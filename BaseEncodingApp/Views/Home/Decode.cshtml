@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "Base64 Decode";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .container {
+            max-width: 900px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .display-4 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            font-size: 1rem;
+            font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        textarea.form-control,
+        pre.form-control {
+            background-color: #f8f9fa;
+            border: 1px solid #ced4da;
+        }
+
+        .text-muted a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .text-muted a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="py-5 container">
+        <h1 class="display-4 mb-5 text-center">Base64 Decode</h1>
+
+        <div class="card rounded-lg shadow-lg">
+            <div class="card-body">
+                
+                <p class="lead mb-4 text-center">Decode your Base64-encoded text or file back to its original form. Enter your Base64 string or choose a file to decode.</p>
+
+                <form method="post" enctype="multipart/form-data">
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputText" class="fw-bold">Enter Base64 text to decode:</label>
+                                <input type="text" id="inputText" name="inputText" class="form-control form-control-lg" placeholder="Enter Base64 text" />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="inputFile" class="fw-bold">Or choose a Base64 file to decode:</label>
+                                <input type="file" id="inputFile" name="inputFile" class="form-control form-control-lg" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary">Decode Now</button>
+                    </div>
+                </form>
+
+                @if (ViewBag.DecodedText != null)
+                {
+                    <div class="mt-4">
+                        <h5 class="fw-bold text-center">Decoded Result:</h5>
+                        <textarea class="form-control form-control-lg" readonly rows="6">@ViewBag.DecodedText</textarea>
+                    </div>
+                }
+
+                @if (ViewBag.DecodedFileContent != null)
+                {
+                    <div class="mt-4">
+                        <h5 class="fw-bold text-center">Decoded File Content:</h5>
+                        <pre class="form-control form-control-lg" readonly>@ViewBag.DecodedFileContent</pre>
+                    </div>
+                }
+            </div>
+        </div>
+
+        <div class="mt-5 text-center">
+            <p class="text-muted">
+                Need more info? <a href="https://www.base64decode.org/" target="_blank" class="text-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Learn more about Base64 decoding">Click here</a> for more about Base64 decoding and its uses.
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
