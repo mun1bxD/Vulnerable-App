@@ -47,6 +47,8 @@ namespace BaseEncodingApp.Controllers
 
             return View();
         }
+        
+
         public IActionResult Decode()
         {
             return View();
